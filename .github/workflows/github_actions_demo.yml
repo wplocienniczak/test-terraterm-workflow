@@ -1,1 +1,29 @@
+name: task 2 - Terraform
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "1.0.0"
+
+      - name: terraform Init
+        run: terraform init
+
+      - name: terraform Validate
+        run: terraform validate
+
+      - name: terraform Plan
+        run: terraform plan
+
+      - name: terraform Apply
+        run: terraform apply -auto-approve
